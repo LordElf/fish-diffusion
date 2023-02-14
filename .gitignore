@@ -52,6 +52,9 @@ coverage.xml
 .pytest_cache/
 
 # Text tool
+tools/text/create_symbol_dict.py
+
+# Text tool
 dictionaries/ipa/create_symbol_dict.py
 
 # Translations

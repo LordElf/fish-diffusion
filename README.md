@@ -7,7 +7,7 @@
 </div>
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/fishaudio/fish-diffusion/ci.yml?style=flat-square)](https://github.com/fishaudio/fish-diffusion/actions/workflows/ci.yml)
-[![Discord](https://img.shields.io/discord/1044927142900809739?color=%23738ADB&label=Discord&logo=discord&logoColor=white&style=flat-square)](https://discord.gg/3CtFhTsvuG)
+[![Discord](https://img.shields.io/discord/1044927142900809739?color=%23738ADB&label=Discord&logo=discord&logoColor=white&style=flat-square)](https://discord.gg/wbYSRBrW2E)
 [![Docker Hub](https://img.shields.io/docker/cloud/build/lengyue233/fish-diffusion?style=flat-square)](https://hub.docker.com/r/lengyue233/fish-diffusion)
 [![BiliBili](https://img.shields.io/badge/BiliBili-%E5%86%B7%E6%9C%882333-00A1D6?logo=bilibili&style=flat-square)](https://space.bilibili.com/23195420)
 
@@ -108,10 +108,17 @@ python train.py --config configs/svc_hubert_soft.py --pretrained [checkpoint]
 
 ## 推理
 ```bash
-python inference.py --config configs/svc_hubert_soft.py \
+# 命令行推理, 你可以使用 --help 查看更多参数
+python inference.py --config [config] \
     --checkpoint [checkpoint] \
     --input [input audio] \
     --output [output audio]
+
+
+# Gradio Web 推理, 其他参数会被转为 Gradio 默认参数
+python inference/gradio_inference.py --config [config] \
+    --checkpoint [checkpoint] \
+    --gradio
 ```
 
 ## 将 DiffSVC 模型转换为 Fish Diffusion 模型
@@ -124,6 +131,11 @@ python tools/diff_svc_converter.py --config configs/svc_hubert_soft_diff_svc.py 
 ## 参与本项目
 如果你有任何问题, 请提交 issue 或 pull request.  
 你应该在提交 pull request 之前运行 `tools/lint.sh`
+
+实时预览文档
+```bash
+sphinx-autobuild docs docs/_build/html
+```
 
 
 ## 参考项目

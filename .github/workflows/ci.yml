@@ -23,3 +23,27 @@ jobs:
         run: |
           poetry run python -m black . --check
           poetry run python -m isort . --check
+
+  docs:
+    runs-on: ubuntu-latest
+    # Only run this job if the lint job is successful and the current branch is main
+    needs: lint
+    if: ${{ github.ref == 'refs/heads/main' }}
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: "3.10"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip poetry
+          poetry config virtualenvs.create false --local
+          poetry install --only docs
+      - name: Build docs
+        run: cd docs && make html
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/_build/html
