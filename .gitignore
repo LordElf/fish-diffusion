@@ -52,7 +52,7 @@ coverage.xml
 .pytest_cache/
 
 # Text tool
-tools/text/create_symbol_dict.py
+dictionaries/ipa/create_symbol_dict.py
 
 # Translations
 *.mo
@@ -154,3 +154,4 @@ configs/exp_*.py
 exp_*.sh
 .DS_Store
 .vscode
+fish-diffusion-docker.env
