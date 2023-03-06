@@ -4,15 +4,27 @@
 
 # Fish Diffusion
 
+<div>
+<a href="https://github.com/fishaudio/fish-diffusion/actions/workflows/ci.yml">
+<img alt="Build Status" src="https://img.shields.io/github/actions/workflow/status/fishaudio/fish-diffusion/ci.yml?style=flat-square&logo=GitHub">
+</a>
+<a href="https://hub.docker.com/r/lengyue233/fish-diffusion">
+<img alt="Docker Hub" src="https://img.shields.io/docker/cloud/build/lengyue233/fish-diffusion?style=flat-square&logo=Docker&logoColor=white">
+</a>
+<a href="https://discord.gg/wbYSRBrW2E">
+<img alt="Discord" src="https://img.shields.io/discord/1044927142900809739?color=%23738ADB&label=Discord&logo=discord&logoColor=white&style=flat-square">
+</a>
 </div>
 
-[![Build Status](https://img.shields.io/github/actions/workflow/status/fishaudio/fish-diffusion/ci.yml?style=flat-square)](https://github.com/fishaudio/fish-diffusion/actions/workflows/ci.yml)
-[![Discord](https://img.shields.io/discord/1044927142900809739?color=%23738ADB&label=Discord&logo=discord&logoColor=white&style=flat-square)](https://discord.gg/wbYSRBrW2E)
-[![Docker Hub](https://img.shields.io/docker/cloud/build/lengyue233/fish-diffusion?style=flat-square)](https://hub.docker.com/r/lengyue233/fish-diffusion)
+</div>
+
+------
 
 An easy to understand TTS / SVS / SVC training framework.
 
-> Check our [Wiki](https://github.com/fishaudio/fish-diffusion/wiki/Quick-Guide-ENG#quick-fishsvc-guide) to get started!
+> Check our [Wiki](https://fishaudio.github.io/fish-diffusion/) to get started! 
+ 
+> As the main branch is actively developing, we recommend that new users choose a stable version, such as [v1.12](https://github.com/fishaudio/fish-diffusion/tree/v1.12)
 
 [中文文档](README.md)
 
@@ -87,34 +99,34 @@ python tools/preprocessing/extract_features.py --config configs/svc_hubert_soft.
 
 ```bash
 # Single machine single card / multi-card training
-python train.py --config configs/svc_hubert_soft.py
+python tools/diffusion/train.py --config configs/svc_hubert_soft.py
 
 # Resume training
-python train.py --config configs/svc_hubert_soft.py --resume [checkpoint]
+python tools/diffusion/train.py --config configs/svc_hubert_soft.py --resume [checkpoint]
 
 # Fine-tune the pre-trained model
 # Note: You should adjust the learning rate scheduler in the config file to warmup_cosine_finetune
-python train.py --config configs/svc_hubert_soft.py --pretrained [checkpoint]
+python tools/diffusion/train.py --config configs/svc_cn_hubert_soft_finetune.py --pretrained [checkpoint]
 ```
 
 ## Inference
 ```bash
 # Inference using shell, you can use --help to view more parameters
-python inference.py --config [config] \
+python tools/diffusion/inference.py --config [config] \
     --checkpoint [checkpoint] \
     --input [input audio] \
     --output [output audio]
 
 
 # Gradio Web Inference, other parameters will be used as gradio default parameters
-python inference/gradio_inference.py --config [config] \
+python tools/diffusion/inference.py --config [config] \
     --checkpoint [checkpoint] \
     --gradio
 ```
 
 ## Convert a DiffSVC model to Fish Diffusion
 ```bash
-python tools/diff_svc_converter.py --config configs/svc_hubert_soft_diff_svc.py \
+python tools/diffusion/diff_svc_converter.py --config configs/svc_hubert_soft_diff_svc.py \
     --input-path [DiffSVC ckpt] \
     --output-path [Fish Diffusion ckpt]
 ```
@@ -132,7 +144,7 @@ sphinx-autobuild docs docs/_build/html
 + [diff-svc original](https://github.com/prophesier/diff-svc)
 + [diff-svc optimized](https://github.com/innnky/diff-svc/)
 + [DiffSinger](https://github.com/openvpi/DiffSinger/)
-+ [SpeechSplit](https://github.com/auspicious3000/SpeechSplit)
++ [so-vits-svc](https://github.com/innnky/so-vits-svc)
 
 ## Thanks to all contributors for their efforts
 

@@ -157,4 +157,4 @@ configs/exp_*.py
 exp_*.sh
 .DS_Store
 .vscode
-fish-diffusion-docker.env
+fish-diffusion-docker.envexported

@@ -1,9 +1,9 @@
 import torch
 
-from train import FishDiffusion
+from fish_diffusion.archs.diffsinger import DiffSingerLightning
 
 
-def load_checkpoint(config, checkpoint, device="cuda") -> FishDiffusion:
+def load_checkpoint(config, checkpoint, device="cuda", model_cls=DiffSingerLightning):
     """Load checkpoint from path
 
     Args:
@@ -12,16 +12,16 @@ def load_checkpoint(config, checkpoint, device="cuda") -> FishDiffusion:
         device: device
 
     Returns:
-        FishDiffusion: model
+        model
     """
 
-    model = FishDiffusion(config)
+    model = model_cls(config)
     state_dict = torch.load(checkpoint, map_location="cpu")
 
     if "state_dict" in state_dict:  # Checkpoint is saved by pl
         state_dict = state_dict["state_dict"]
 
-    model.load_state_dict(state_dict)
+    model.load_state_dict(state_dict, strict=False)
     model.to(device)
     model.eval()
 

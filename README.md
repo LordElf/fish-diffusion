@@ -4,15 +4,37 @@
 
 # Fish Diffusion
 
+<div>
+<a href="https://github.com/fishaudio/fish-diffusion/actions/workflows/ci.yml">
+<img alt="Build Status" src="https://img.shields.io/github/actions/workflow/status/fishaudio/fish-diffusion/ci.yml?style=flat-square&logo=GitHub">
+</a>
+<a href="https://hub.docker.com/r/lengyue233/fish-diffusion">
+<img alt="Docker Hub" src="https://img.shields.io/docker/cloud/build/lengyue233/fish-diffusion?style=flat-square&logo=Docker&logoColor=white">
+</a>
+<a href="https://colab.research.google.com/drive/1GPNq1FWH5LE2f79M4QV2UbdWWazfgrpt">
+<img alt="Colab" src="https://img.shields.io/badge/Colab-Notebook-F9AB00?logo=Google%20Colab&style=flat-square&logoColor=white">
+</a>
 </div>
 
-[![Build Status](https://img.shields.io/github/actions/workflow/status/fishaudio/fish-diffusion/ci.yml?style=flat-square)](https://github.com/fishaudio/fish-diffusion/actions/workflows/ci.yml)
-[![Discord](https://img.shields.io/discord/1044927142900809739?color=%23738ADB&label=Discord&logo=discord&logoColor=white&style=flat-square)](https://discord.gg/wbYSRBrW2E)
-[![Docker Hub](https://img.shields.io/docker/cloud/build/lengyue233/fish-diffusion?style=flat-square)](https://hub.docker.com/r/lengyue233/fish-diffusion)
-[![BiliBili](https://img.shields.io/badge/BiliBili-%E5%86%B7%E6%9C%882333-00A1D6?logo=bilibili&style=flat-square)](https://space.bilibili.com/23195420)
+<div>
+<a href="https://discord.gg/wbYSRBrW2E">
+<img alt="Discord" src="https://img.shields.io/discord/1044927142900809739?color=%23738ADB&label=Discord&logo=discord&logoColor=white&style=flat-square">
+</a>
+<a href="https://space.bilibili.com/23195420">
+<img alt="BiliBili" src="https://img.shields.io/badge/BiliBili-%E5%86%B7%E6%9C%882333-00A1D6?logo=bilibili&style=flat-square&logoColor=white">
+</a>
+<img alt="QQ" src="https://img.shields.io/badge/QQ-588056461-EB1923?logo=Tencent%20QQ&style=flat-square">
+</div>
+
+</div>
+
+------
 
 一个简单易懂的 TTS / SVS / SVC 框架.
 
+> 从阅读 [Wiki](https://fishaudio.github.io/fish-diffusion/) 开始! 
+ 
+> 由于 main 分支在积极开发, 我们建议新用户选择一个稳定版本, 例如 [v1.12](https://github.com/fishaudio/fish-diffusion/tree/v1.12)  
 [English Document](README.en.md)
 
 ## 简介
@@ -96,34 +118,34 @@ python tools/preprocessing/extract_features.py --config configs/svc_hubert_soft.
 
 ```bash
 # 单机单卡 / 单机多卡训练
-python train.py --config configs/svc_hubert_soft.py
+python tools/diffusion/train.py --config configs/svc_hubert_soft.py
 
 # 继续训练
-python train.py --config configs/svc_hubert_soft.py --resume [checkpoint]
+python tools/diffusion/train.py --config configs/svc_hubert_soft.py --resume [checkpoint]
 
 # 微调预训练模型
 # 注意: 你应该调整配置文件中的学习率调度器为 warmup_cosine_finetune
-python train.py --config configs/svc_hubert_soft.py --pretrained [checkpoint]
+python tools/diffusion/train.py --config configs/svc_cn_hubert_soft_finetune.py --pretrained [checkpoint]
 ```
 
 ## 推理
 ```bash
 # 命令行推理, 你可以使用 --help 查看更多参数
-python inference.py --config [config] \
+python tools/diffusion/inference.py --config [config] \
     --checkpoint [checkpoint] \
     --input [input audio] \
     --output [output audio]
 
 
 # Gradio Web 推理, 其他参数会被转为 Gradio 默认参数
-python inference/gradio_inference.py --config [config] \
+python tools/diffusion/inference.py --config [config] \
     --checkpoint [checkpoint] \
     --gradio
 ```
 
 ## 将 DiffSVC 模型转换为 Fish Diffusion 模型
 ```bash
-python tools/diff_svc_converter.py --config configs/svc_hubert_soft_diff_svc.py \
+python tools/diffusion/diff_svc_converter.py --config configs/svc_hubert_soft_diff_svc.py \
     --input-path [DiffSVC ckpt] \
     --output-path [Fish Diffusion ckpt]
 ```
@@ -142,7 +164,7 @@ sphinx-autobuild docs docs/_build/html
 + [diff-svc original](https://github.com/prophesier/diff-svc)
 + [diff-svc optimized](https://github.com/innnky/diff-svc/)
 + [DiffSinger](https://github.com/openvpi/DiffSinger/)
-+ [SpeechSplit](https://github.com/auspicious3000/SpeechSplit)
++ [so-vits-svc](https://github.com/innnky/so-vits-svc)
 
 ## 感谢所有贡献者作出的努力
 
